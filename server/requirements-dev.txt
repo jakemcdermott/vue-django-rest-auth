@@ -1,0 +1,3 @@
+-r requirements.txt
+factory_boy
+Faker

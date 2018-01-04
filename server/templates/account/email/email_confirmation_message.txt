@@ -1,0 +1,10 @@
+{% load account %}{% user_display user as username %}{% load i18n %}{% blocktrans with domain=current_site.domain %}Hello,
+
+To activate your {{ domain }} account for user {{ username }}, use this link:
+
+{% endblocktrans %}{% if request.is_secure %}https{% else %}http{% endif %}{% blocktrans with domain=current_site.domain %}://{{ domain }}/#/register/{{ key }}
+
+Sincerely,
+
+The {{ domain }} team
+{% endblocktrans %}
