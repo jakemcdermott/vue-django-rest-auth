@@ -27,7 +27,7 @@ const actions = {
     return auth.login(username, password)
       .then(({ data }) => commit(SET_TOKEN, data.key))
       .then(() => commit(LOGIN_SUCCESS))
-      .catch(() => LOGIN_FAILURE);
+      .catch(() => commit(LOGIN_FAILURE));
   },
   logout({ commit }) {
     return auth.logout()
