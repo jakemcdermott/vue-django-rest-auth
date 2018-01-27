@@ -12,20 +12,26 @@ import VerifyEmail from '../views/VerifyEmail';
 
 import store from '../store';
 
-const redirectUnauthorizedToLogin = (to, from, next) => {
-  if (!store.getters['auth/isAuthenticated']) {
-    next('/login');
-  } else {
-    next();
-  }
+const requireAuthenticated = (to, from, next) => {
+  store.dispatch('auth/initialize')
+    .then(() => {
+      if (!store.getters['auth/isAuthenticated']) {
+        next('/login');
+      } else {
+        next();
+      }
+    });
 };
 
-const redirectAuthorizedToHome = (to, from, next) => {
-  if (store.getters['auth/isAuthenticated']) {
-    next('/home');
-  } else {
-    next();
-  }
+const requireUnauthenticated = (to, from, next) => {
+  store.dispatch('auth/initialize')
+    .then(() => {
+      if (store.getters['auth/isAuthenticated']) {
+        next('/home');
+      } else {
+        next();
+      }
+    });
 };
 
 const redirectLogout = (to, from, next) => {
@@ -39,18 +45,18 @@ export default new Router({
   saveScrollPosition: true,
   routes: [
     {
-      path: '/about',
-      component: About,
-      beforeEnter: redirectUnauthorizedToLogin,
-    },
-    {
       path: '/',
       redirect: '/home',
     },
     {
+      path: '/about',
+      component: About,
+      beforeEnter: requireAuthenticated,
+    },
+    {
       path: '/home',
       component: Home,
-      beforeEnter: redirectUnauthorizedToLogin,
+      beforeEnter: requireAuthenticated,
     },
     {
       path: '/password_reset',
@@ -71,7 +77,7 @@ export default new Router({
     {
       path: '/login',
       component: Login,
-      beforeEnter: redirectAuthorizedToHome,
+      beforeEnter: requireUnauthenticated,
     },
     {
       path: '/logout',

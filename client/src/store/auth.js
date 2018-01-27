@@ -14,7 +14,7 @@ const TOKEN_STORAGE_KEY = 'TOKEN_STORAGE_KEY';
 const initialState = {
   authenticating: false,
   error: false,
-  token: localStorage.getItem(TOKEN_STORAGE_KEY),
+  token: null,
 };
 
 const getters = {
@@ -33,6 +33,15 @@ const actions = {
     return auth.logout()
       .then(() => commit(LOGOUT))
       .finally(() => commit(REMOVE_TOKEN));
+  },
+  initialize({ commit }) {
+    const token = localStorage.getItem(TOKEN_STORAGE_KEY);
+
+    if (token) {
+      commit(SET_TOKEN, token);
+    } else {
+      commit(REMOVE_TOKEN);
+    }
   },
 };
 
