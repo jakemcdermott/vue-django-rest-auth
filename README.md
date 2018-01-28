@@ -4,3 +4,8 @@ An example [VueJS](https://github.com/vuejs/vue) project featuring an authentica
 
 * [client](client)
 * [server](server)
+
+#### Dependencies
+- python 3.5+
+- node 8.9.0
+- npm
