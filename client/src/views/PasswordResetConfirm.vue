@@ -7,7 +7,8 @@
     <template v-else-if="!resetCompleted">
       <form @submit.prevent="submit">
         <input v-model="inputs.password1" type="password" id="password1" placeholder="password">
-        <input v-model="inputs.password2" type="password" id="password2" placeholder="confirm password">
+        <input v-model="inputs.password2" type="password" id="password2"
+          placeholder="confirm password">
       </form>
       <button @click="resetPassword(inputs)">
         reset password

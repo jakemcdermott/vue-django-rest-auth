@@ -8,7 +8,8 @@
       <form @submit.prevent="submit">
         <input v-model="inputs.username" type="text" id="username" placeholder="username">
         <input v-model="inputs.password1" type="password" id="password1" placeholder="password">
-        <input v-model="inputs.password2" type="password" id="password2" placeholder="confirm password">
+        <input v-model="inputs.password2" type="password" id="password2"
+          placeholder="confirm password">
         <input v-model="inputs.email" type="email" id="email" placeholder="email">
       </form>
       <button @click="createAccount(inputs)">
