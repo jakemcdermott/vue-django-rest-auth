@@ -3,7 +3,7 @@ PYTHON_BIN = $(shell cd server && pipenv --venv)/bin/python
 python_bin:
 	pushd server; pipenv install --dev; popd;
 
-database:	python_bin
+database: python_bin
 	$(PYTHON_BIN) ./server/manage.py makemigrations api --noinput
 	$(PYTHON_BIN) ./server/manage.py migrate --noinput
 
@@ -15,10 +15,10 @@ server-dev: python_bin
 	$(PYTHON_BIN) ./server/manage.py runserver --settings=server.settings
 
 client/node_modules:
-	npm --prefix=./client install
+	yarn --cwd=./client install
 
 client-dist: client/node_modules
-	npm --prefix=./client run build
+	yarn --cwd=./client run build
 
 clean:
 	find . -name \*.pyc -o -name -delete

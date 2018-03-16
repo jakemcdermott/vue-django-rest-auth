@@ -9,4 +9,4 @@ An example [Vue.js](https://github.com/vuejs/vue) project featuring an unstyled 
 - python 3.6
 - pipenv 11.10.0
 - node 8.9.0
-- npm 5.6.0
+- yarn 1.6.0+
