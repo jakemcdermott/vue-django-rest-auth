@@ -3,6 +3,7 @@
 ``` bash
 # install dependencies
 pipenv install --dev
+pipenv shell
 
 # setup development database
 ./manage.py makemigrations api --noinput
