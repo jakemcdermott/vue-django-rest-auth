@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'lost',
-  };
+export default {
+  name: 'lost',
+};
 </script>

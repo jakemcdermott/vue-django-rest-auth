@@ -2,7 +2,8 @@
 
 ``` bash
 # install dependencies
-pip install -r requirements-dev.txt
+pipenv install --dev
+pipenv shell
 
 # setup development database
 ./manage.py makemigrations api --noinput
@@ -16,4 +17,4 @@ pip install -r requirements-dev.txt
 ./manage.py runserver --settings=server.settings
 ```
 
-**Note:** You should setup and activate a [virtualenv](https://virtualenv.pypa.io/en/stable/) before installing any python dependencies.
+**Note:** You should install [pipenv](https://docs.pipenv.org/) before installing any python dependencies.
