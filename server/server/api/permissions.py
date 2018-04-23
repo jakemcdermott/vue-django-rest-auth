@@ -19,6 +19,10 @@ class AdminOrAuthorCanEdit(BasePermission):
     def has_object_permission(self, request, view, obj=None):
         """Only the author can modify existing instances."""
         is_safe = request.method in SAFE_METHODS
-        is_author = request.user == obj.author
+
+        try:
+            is_author = request.user == obj.author
+        except AttributeError:
+            is_author = False
 
         return is_safe or is_author or request.user.is_superuser
