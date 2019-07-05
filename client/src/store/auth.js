@@ -10,6 +10,7 @@ import {
 } from './types';
 
 const TOKEN_STORAGE_KEY = 'TOKEN_STORAGE_KEY';
+const isProduction = process.env.NODE_ENV === 'production';
 
 const initialState = {
   authenticating: false,
@@ -37,10 +38,12 @@ const actions = {
   initialize({ commit }) {
     const token = localStorage.getItem(TOKEN_STORAGE_KEY);
 
-    if (token) {
-      commit(SET_TOKEN, token);
-    } else {
+    if (isProduction && token) {
       commit(REMOVE_TOKEN);
+    }
+
+    if (!isProduction && token) {
+      commit(SET_TOKEN, token);
     }
   },
 };
@@ -63,7 +66,7 @@ const mutations = {
     state.error = false;
   },
   [SET_TOKEN](state, token) {
-    localStorage.setItem(TOKEN_STORAGE_KEY, token);
+    if (!isProduction) localStorage.setItem(TOKEN_STORAGE_KEY, token);
     session.defaults.headers.Authorization = `Token ${token}`;
     state.token = token;
   },
