@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 PYTHON_BIN = $(shell cd server && pipenv --venv)/bin/python
 
 python_bin:
