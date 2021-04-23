@@ -17,4 +17,4 @@ pipenv shell
 ./manage.py runserver --settings=server.settings
 ```
 
-**Note:** You should install [pipenv](https://docs.pipenv.org/) before installing any python dependencies.
+**Note:** You should install [pipenv](https://pipenv.pypa.io/en/latest/) before installing any python dependencies.
